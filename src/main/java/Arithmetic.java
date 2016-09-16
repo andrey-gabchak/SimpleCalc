@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.Stack;
 
 
-public class Arithmetic {
+class Arithmetic {
     private final List<Operation> operationsList = AllOperations.getAllOperations().getOperationsList();
 
     private Stack<Double> stackResult = new Stack<>();
 
 
-    public Double calculation(String expression) {
+    protected Double calculation(String expression) {
         Parser parser = new Parser();
         Stack<String> stack = parser.parsing(expression);
         for (String s : stack) {
