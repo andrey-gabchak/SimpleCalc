@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-public class Parser {
+class Parser {
     private List<Operation> operationsList = AllOperations.getAllOperations().getOperationsList();
     private final String OPERATORS = AllOperations.getAllOperations().getOperationsLikeString();
     private Stack<String> stackOperations = new Stack<>();
@@ -47,7 +47,6 @@ public class Parser {
             stackRPN.push(stackOperations.pop());
         }
 
-        System.out.println(stackRPN);
         return stackRPN;
     }
 
