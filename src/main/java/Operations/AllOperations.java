@@ -38,7 +38,6 @@ public class AllOperations {
     }
 
 
-    //TODO: Проверить будет ли ошибка если list.size() == 0
     private String operationsToString(ArrayList<Operation> list) {
         StringBuilder operationsLikeString = new StringBuilder();
         for (Operation operation : list) {

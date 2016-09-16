@@ -1,11 +1,9 @@
 package Operations;
 
-import java.math.BigDecimal;
-
 public class Substraction implements Operation {
     @Override
-    public BigDecimal getResult(BigDecimal num1, BigDecimal num2) {
-        return num2.subtract(num1);
+    public double getResult(double num1, double num2) {
+        return num2 - num1;
     }
 
     @Override

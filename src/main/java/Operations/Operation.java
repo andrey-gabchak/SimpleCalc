@@ -1,10 +1,8 @@
 package Operations;
 
-import java.math.BigDecimal;
-
 public interface Operation {
 
-    BigDecimal getResult(BigDecimal num1, BigDecimal num2);
+    double getResult(double num1, double num2);
 
     String getOperator();
 
