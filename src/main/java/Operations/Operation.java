@@ -4,15 +4,8 @@ public interface Operation {
 
     double getResult(double num1, double num2);
 
-    String getOperator();
+    String getOperator(); //Type String because I need compare with element of Stack<String>
 
     int getPriority();
 
-    /*
-    * Парсинг. Валидатор
-    * Результат
-    * Получить оператор (как знак). Нужно ли?
-    * Получить приоритет оператора.
-    * Ошибки
-    * */
 }
