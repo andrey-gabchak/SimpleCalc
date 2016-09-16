@@ -27,6 +27,7 @@ public class AllOperations {
     private void init() {
         operationsList.add(new Addition());
         operationsList.add(new Substraction());
+        operationsList.add(new Power());
     }
 
     public void addOperation(Operation operation) {
