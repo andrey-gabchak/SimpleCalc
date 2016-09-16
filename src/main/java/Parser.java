@@ -72,8 +72,9 @@ class Parser {
         return 0;
     }
 
+    //Type float parsing like double
     private String replace(String inputExpression) {
-        inputExpression = inputExpression.replace(" ", "").replace("(-", "(0-");
+        inputExpression = inputExpression.replace(" ", "").replace("(-", "(0-").replace("f", "");
         if (inputExpression.charAt(0) == '-') {
             inputExpression = "0" + inputExpression;
         }
