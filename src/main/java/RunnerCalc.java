@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 
 public class RunnerCalc {
 
@@ -10,7 +9,7 @@ public class RunnerCalc {
         String inputExpression = reader.readLine();
         Arithmetic arithmetic = new Arithmetic();
 
-        BigDecimal result = arithmetic.calculation(inputExpression);
+        double result = arithmetic.calculation(inputExpression);
         System.out.println(result);
     }
 }
