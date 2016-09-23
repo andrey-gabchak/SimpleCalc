@@ -13,9 +13,7 @@ class Arithmetic {
     private Stack<Double> stackResult = new Stack<>();
 
 
-    protected Double calculation(String expression) {
-        Parser parser = new Parser();
-        Stack<String> stackPRN = parser.parsing(expression);
+    protected Double calculation(Stack<String> stackPRN) {
 
         for (String s : stackPRN) {
             try {
