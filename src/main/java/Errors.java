@@ -1,9 +1,11 @@
 import Operations.AllOperations;
 
-public class Errors {
-    private final String OPERATORS = AllOperations.getAllOperations().getOperationsLikeString();
+class Errors {
+    private final String OPERATORS = AllOperations.getAllOperations().getAllOperationsLikeString();
+    private final String BINARYOPERATORS = AllOperations.getAllOperations().getBinaryOperationLikeString();
+    private final String UNARYOPERATORS = AllOperations.getAllOperations().getUnaryOperationLikeString();
 
-    public void checkErrors(String inputExpression) {
+    protected void checkErrors(String inputExpression) {
         char[] inputToCharArray = inputExpression.toCharArray();
 
         if (!isCorrectCountBrackets(inputToCharArray)) {
@@ -17,14 +19,13 @@ public class Errors {
             if (!isDigit(inputToCharArray[i]) && !isOperationSign(inputToCharArray[i]) && !isBracket(inputToCharArray[i])) {
                 throw new RuntimeException("Не корректный ввод!");
             }
-            if (isOperationSign(inputToCharArray[i]) && isOperationSign(inputToCharArray[i + 1])
+            if (isUnaryOperator(inputToCharArray[i]) && isUnaryOperator(inputToCharArray[i + 1])
                     && (i < inputToCharArray.length - 1)) {
-                throw new RuntimeException("Два знака подряд!");
+                throw new RuntimeException("Два унарных оператора подряд!");
             }
-        }
-
-        for (char character : inputToCharArray) {
-            if (!isDigit(character) && !isOperationSign(character)) {
+            if (isBinaryOperator(inputToCharArray[i]) && isBinaryOperator(inputToCharArray[i + 1])
+                    && (i < inputToCharArray.length - 1)) {
+                throw new RuntimeException("Два бинарных оператора подряд!");
             }
         }
     }
@@ -45,14 +46,11 @@ public class Errors {
             }
         }
 
-        if (countBrackets != 0) {
-            return false;
-        }
-        return true;
+        return countBrackets == 0;
     }
 
     /**
-     * не является ли последний симвом в выражении арифметической операцией
+     * if last symbol is a operation
      */
     private boolean checkLastSymbol(char[] charArray) {
         return isOperationSign(charArray[charArray.length - 1]);
@@ -77,9 +75,14 @@ public class Errors {
      * Is it a bracket?
      * */
     private boolean isBracket(final char c) {
-        if (String.valueOf(c).equals(")") || String.valueOf(c).equals("(")) {
-            return true;
-        }
-        return false;
+        return String.valueOf(c).equals(")") || String.valueOf(c).equals("(");
+    }
+
+    private boolean isUnaryOperator(char c) {
+        return UNARYOPERATORS.indexOf(c) != -1;
+    }
+
+    private boolean isBinaryOperator(char c) {
+        return BINARYOPERATORS.indexOf(c) != -1;
     }
 }
