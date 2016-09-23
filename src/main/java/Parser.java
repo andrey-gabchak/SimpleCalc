@@ -1,25 +1,28 @@
 import Operations.AllOperations;
-import Operations.Operation;
-import java.math.BigDecimal;
+import Operations.BinaryOperation;
+import Operations.UnaryOperation;
+
 import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
 class Parser {
-    private List<Operation> operationsList = AllOperations.getAllOperations().getOperationsList();
-    private final String OPERATORS = AllOperations.getAllOperations().getOperationsLikeString();
+    private List<BinaryOperation> binaryOperations = AllOperations.getAllOperations().getBinaryOperations();
+    private List<UnaryOperation> unaryOperations = AllOperations.getAllOperations().getUnaryOperations();
+    private final String OPERATORS = AllOperations.getAllOperations().getAllOperationsLikeString();
     private Stack<String> stackOperations = new Stack<>();
     private Stack<String> stackRPN = new Stack<>();
 
     protected Stack<String> parsing(String inputExpression) {
-        //Проверка на ошибки
+
+        inputExpression = replace(inputExpression);
+
         Errors errors = new Errors();
         errors.checkErrors(inputExpression);
 
         stackOperations.clear();
         stackRPN.clear();
 
-        inputExpression = replace(inputExpression);
 
         StringTokenizer expressionTokenizer = new StringTokenizer(inputExpression, OPERATORS + "()", true);
 
@@ -52,7 +55,7 @@ class Parser {
 
     private boolean isNumber(String token) {
         try {
-            new BigDecimal(token);
+            new Double(token);
         } catch (NumberFormatException e) {
             return false;
         }
@@ -64,9 +67,14 @@ class Parser {
     }
 
     private int getPrecedence(String token) {
-        for (Operation operation : operationsList) {
+        for (BinaryOperation operation : binaryOperations) {
             if (token.equals(operation.getOperator())) {
                 return operation.getPriority();
+            }
+        }
+        for (UnaryOperation unaryOperation : unaryOperations) {
+            if (token.equals(unaryOperation.getOperator())) {
+                return unaryOperation.getPriority();
             }
         }
         return 0;
@@ -74,7 +82,7 @@ class Parser {
 
     //Type float parsing like double
     private String replace(String inputExpression) {
-        inputExpression = inputExpression.replace(" ", "").replace("(-", "(0-").replace("f", "");
+        inputExpression = inputExpression.replace(" ", "").replace("(-", "(0-").replace("f", "").replace("sqrt", "s");
         if (inputExpression.charAt(0) == '-') {
             inputExpression = "0" + inputExpression;
         }
