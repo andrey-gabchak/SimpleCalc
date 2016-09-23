@@ -1,6 +1,6 @@
 package Operations;
 
-public class Substraction implements Operation {
+public class Subtraction implements BinaryOperation {
     @Override
     public double getResult(double num1, double num2) {
         return num2 - num1;
