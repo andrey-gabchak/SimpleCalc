@@ -6,8 +6,11 @@ import java.util.List;
 public class AllOperations {
 
     private static AllOperations allOperations;
-    private ArrayList<Operation> operationsList = new ArrayList<>();
-    private String operationsLikeString;
+    private ArrayList<BinaryOperation> binaryOperations = new ArrayList<>();
+    private ArrayList<UnaryOperation> unaryOperations = new ArrayList<>();
+    private String allOperationsLikeString;
+    private String binaryOperationLikeString;
+    private String unaryOperationLikeString;
 
     private AllOperations() {
     }
@@ -22,35 +25,60 @@ public class AllOperations {
 
 
     /* Костыль.
-    * TODO: Нужно создать экземпляры всех классов, которые наследуются от интерфейса Operation
+    * TODO: Нужно создать экземпляры всех классов, которые наследуются от интерфейса BinaryOperation
     * */
     private void init() {
-        operationsList.add(new Addition());
-        operationsList.add(new Substraction());
-        operationsList.add(new Power());
+        binaryOperations.add(new Addition());
+        binaryOperations.add(new Subtraction());
+        binaryOperations.add(new Power());
+        unaryOperations.add(new Sqrt());
     }
 
-    public void addOperation(Operation operation) {
-        operationsList.add(operation);
+    public void addBinaryOperation(BinaryOperation operation) {
+        binaryOperations.add(operation);
     }
 
-    public List<Operation> getOperationsList() {
-        return operationsList;
+    public void addUnaryOperation(UnaryOperation operation) {
+        unaryOperations.add(operation);
     }
 
+    public List<BinaryOperation> getBinaryOperations() {
+        return binaryOperations;
+    }
 
-    private String operationsToString(ArrayList<Operation> list) {
-        StringBuilder operationsLikeString = new StringBuilder();
-        for (Operation operation : list) {
-            operationsLikeString.append(operation.getOperator());
+    public ArrayList<UnaryOperation> getUnaryOperations() {
+        return unaryOperations;
+    }
+
+    public String getBinaryOperationLikeString() {
+        return binaryOperationLikeString;
+    }
+
+    public String getUnaryOperationLikeString() {
+        return unaryOperationLikeString;
+    }
+
+    private void operationsToString(ArrayList<BinaryOperation> binaryList, ArrayList<UnaryOperation> unaryList) {
+        StringBuilder unary = new StringBuilder();
+        StringBuilder binary = new StringBuilder();
+
+        for (UnaryOperation unaryOperation : unaryList) {
+            unary.append(unaryOperation.getOperator());
         }
-        return operationsLikeString.toString();
+
+        for (BinaryOperation operation : binaryList) {
+            binary.append(operation.getOperator());
+        }
+
+        unaryOperationLikeString = unary.toString();
+        binaryOperationLikeString = binary.toString();
+        allOperationsLikeString = unaryOperationLikeString + binaryOperationLikeString;
     }
 
-    public String getOperationsLikeString() {
-        if (operationsLikeString == null) {
-            operationsLikeString = AllOperations.getAllOperations().operationsToString(operationsList);
+    public String getAllOperationsLikeString() {
+        if (allOperationsLikeString == null) {
+            AllOperations.getAllOperations().operationsToString(binaryOperations, unaryOperations);
         }
-        return operationsLikeString;
+        return allOperationsLikeString;
     }
 }
