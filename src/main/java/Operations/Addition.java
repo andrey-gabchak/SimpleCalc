@@ -1,6 +1,6 @@
 package Operations;
 
-public class Addition implements Operation {
+public class Addition implements BinaryOperation {
 
     @Override
     public double getResult(double num1, double num2) {
