@@ -1,6 +1,6 @@
 package Operations;
 
-public interface Operation {
+public interface BinaryOperation {
 
     double getResult(double num1, double num2);
 
