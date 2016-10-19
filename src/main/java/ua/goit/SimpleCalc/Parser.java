@@ -1,19 +1,21 @@
-import Operations.AllOperations;
-import Operations.BinaryOperation;
-import Operations.UnaryOperation;
+package ua.goit.SimpleCalc;
+
+import ua.goit.SimpleCalc.Operations.AllOperations;
+import ua.goit.SimpleCalc.Operations.BinaryOperation;
+import ua.goit.SimpleCalc.Operations.UnaryOperation;
 
 import java.util.List;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-class Parser {
+public class Parser {
     private List<BinaryOperation> binaryOperations = AllOperations.getAllOperations().getBinaryOperations();
     private List<UnaryOperation> unaryOperations = AllOperations.getAllOperations().getUnaryOperations();
     private final String OPERATORS = AllOperations.getAllOperations().getAllOperationsLikeString();
     private Stack<String> stackOperations = new Stack<>();
     private Stack<String> stackRPN = new Stack<>();
 
-    protected Stack<String> parsing(String inputExpression) {
+    public Stack<String> parsing(String inputExpression) {
 
         inputExpression = replace(inputExpression);
 

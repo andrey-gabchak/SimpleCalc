@@ -1,19 +1,21 @@
-import Operations.AllOperations;
-import Operations.BinaryOperation;
-import Operations.UnaryOperation;
+package ua.goit.SimpleCalc;
+
+import ua.goit.SimpleCalc.Operations.AllOperations;
+import ua.goit.SimpleCalc.Operations.BinaryOperation;
+import ua.goit.SimpleCalc.Operations.UnaryOperation;
 
 import java.util.List;
 import java.util.Stack;
 
 
-class Arithmetic {
+public class Arithmetic {
     private final List<BinaryOperation> binaryOperations = AllOperations.getAllOperations().getBinaryOperations();
     private final List<UnaryOperation> unaryOperations = AllOperations.getAllOperations().getUnaryOperations();
 
     private Stack<Double> stackResult = new Stack<>();
 
 
-    protected Double calculation(Stack<String> stackPRN) {
+    public Double calculation(Stack<String> stackPRN) {
 
         for (String s : stackPRN) {
             try {
