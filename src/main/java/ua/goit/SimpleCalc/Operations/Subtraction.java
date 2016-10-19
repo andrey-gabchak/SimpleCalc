@@ -1,4 +1,4 @@
-package Operations;
+package ua.goit.SimpleCalc.Operations;
 
 public class Subtraction implements BinaryOperation {
     @Override

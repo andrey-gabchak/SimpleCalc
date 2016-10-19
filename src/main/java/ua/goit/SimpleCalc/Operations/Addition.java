@@ -1,4 +1,4 @@
-package Operations;
+package ua.goit.SimpleCalc.Operations;
 
 public class Addition implements BinaryOperation {
 

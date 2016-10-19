@@ -1,11 +1,11 @@
-package Operations;
+package ua.goit.SimpleCalc.Operations;
 
-public interface BinaryOperation {
+public interface UnaryOperation {
 
-    double getResult(double num1, double num2);
+
+    double getResult(double value);
 
     String getOperator(); //Type String because I need compare with element of Stack<String>
 
     int getPriority();
-
 }

@@ -1,4 +1,6 @@
-import Operations.AllOperations;
+package ua.goit.SimpleCalc;
+
+import ua.goit.SimpleCalc.Operations.AllOperations;
 
 class Errors {
     private final String OPERATORS = AllOperations.getAllOperations().getAllOperationsLikeString();

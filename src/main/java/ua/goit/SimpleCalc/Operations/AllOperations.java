@@ -1,4 +1,4 @@
-package Operations;
+package ua.goit.SimpleCalc.Operations;
 
 import java.util.ArrayList;
 import java.util.List;

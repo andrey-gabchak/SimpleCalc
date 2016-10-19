@@ -1,4 +1,4 @@
-package Operations;
+package ua.goit.SimpleCalc.Operations;
 
 import static java.lang.Math.pow;
 

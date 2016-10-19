@@ -1,4 +1,4 @@
-package Operations;
+package ua.goit.SimpleCalc.Operations;
 
 public class Sqrt implements UnaryOperation {
     @Override
